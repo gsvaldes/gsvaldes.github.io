@@ -17,26 +17,19 @@ function MyLibrary () {
 		console.log(items);	    	    	
 	}
 	
-	function sortItems(){
-	
-	    return sortedItemList;
-	}
-	
 	function renderItems(outerElement){
 	    $(outerElement).empty();
 		var doneButton = document.createElement('button');
 		$(doneButton).text('x');
 		$(doneButton).addClass('remove');
-		$(doneButton).on("click", function(){
-		    console.log('you clicked on');
-		    console.log($(this).parent().attr('id'));   // todo call function to remove parent
-			removeItem($(this).parent().attr('id'));
-		});
+		$(doneButton).addClass('btn btn-default');
 	    items.forEach(function(entry, i){
-		    var listItem = document.createElement('div');
+		    var listItem = document.createElement('li');
 			$(listItem).text(entry['text']);
+			$(listItem).wrapInner("<span class='label label-default " + LEVEL_CLASSES[entry['level']] + " '></span>");
+			//$(listItem).attr('class', "well well-sm");    //todo consider removing
 			$(listItem).attr('id', entry['id']);
-			$(listItem).addClass(LEVEL_CLASSES[entry['level']]);
+			$(listItem).addClass("list-group-item");
 			$(listItem).append($(doneButton).clone(true));
 			console.log(listItem);
 		    $(outerElement).append(listItem);
@@ -61,8 +54,6 @@ function MyLibrary () {
 }
 
 
-
-
 $(document).ready(function() {
 	
 	var myLib = MyLibrary();
@@ -75,46 +66,18 @@ $(document).ready(function() {
 		var priority = $("#priority").val();
 		myLib.addItem(txtinput, priority);
 		myLib.renderItems('#messages');
-
-			//var txt = document.createElement('div');
-			//txt.innerHTML = txtinput;
-			
-
-			//$(txt).addClass(priority);
-			
-
-			
-			
-			
-			//$('#messages').append($(txt));
-			//console.log($('#messages'));
 		
-			//var txt2 = $(txt);
-			//txt2.css("opacity", 0.0);
-			//txt2.animate({
-			//	opacity: 1.0
-			//}, 1000, function() {});
-			
-			//event.target.value = "";
-			//$("#someitemtext").val('')
-			return false;  // needed or else default click behaviour may refresh page
+		return false;  // needed or else default click behaviour may refresh page
 	});
-	
-	$('.remove').click(function(){
+		
+	$('#messages').on('click', '.remove', function(){
 	    console.log('button clicked');
+        console.log($(this).parent().attr('id'));
+		myLib.removeItem($(this).parent().attr('id'));
+		myLib.renderItems('#messages');
+
+		return false;
 	
 	});
-	
-	//clickabletext.on("click", function() {
-		
-		//c.increment();
-		//console.log("I have been clicked %d times", c.count);
-		
-		
-		
-		// $("#messages").html("I have been clicked " + c.count + " times");
-		// $("#messages").append("<p>I have been clicked " + c.count + "</p>");
-		
-	//});
 	
 });

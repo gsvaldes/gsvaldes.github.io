@@ -27,13 +27,19 @@
 	<style>
 	.high {
 	    background-color: red;
+		background: red;
+		font-size: 150%;
 	}	
 	.medium {
 	    background-color: orange;
+		background: orange;
+		font-size: 150%;
 	}	
     .low {
-        background-color: black;     
+        background-color: black;
+        background: black;   		
 		color: white;
+		font-size: 150%;
 	}
 	</style>
 	
@@ -42,18 +48,18 @@
 <body>
   <div class="container">
 	  
-    <div class="jumbotron "">
+    <div class="jumbotron">
 	
 	  <h1 class="well">Priority Task List</h1>
 	
 	  <form action="#" class="lead">
 	    
 		<fieldset class="well">
-		  <label class="label label-primary"" for="someitemtext">Enter a Todo</label>
+		  <label class="label label-primary" for="someitemtext">Enter a Todo</label>
 		  <input type="text" id="someitemtext"></input>
 		</fieldset>
 		<fieldset class="well">
-		  <label class="label label-primary"" for="priority">Priority Level</label>
+		  <label class="label label-primary" for="priority">Priority Level</label>
 		  <select name="priority" id="priority">
             <option value="1" class="btn btn-lg" >High</option>
             <option value="2" ="btn btn-lg">Medium</option>
@@ -67,7 +73,12 @@
 	</div>
 	
 	
-	<div id="messages"></div>
+
+
+
+	<ul id="messages" class="list-group"></ul>
+
+
 	
   </div> <!-- /container -->
 </body>
