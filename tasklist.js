@@ -66,6 +66,7 @@ $(document).ready(function() {
 		var priority = $("#priority").val();
 		myLib.addItem(txtinput, priority);
 		myLib.renderItems('#messages');
+		$("#someitemtext").val('');
 		
 		return false;  // needed or else default click behaviour may refresh page
 	});
