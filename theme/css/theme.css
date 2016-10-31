@@ -1,0 +1,35 @@
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+    font-family: 'IRRADIADOR Display';
+}
+
+h1 {
+  line-height: 130%;
+  font-size: 8em;
+} 
+
+.top-divider{
+ margin-top:5px;
+ margin-bottom:5px;
+ height:15px;
+ width:100%;
+ background-color: #33242F;
+}
+
+.bottom-divider{
+ margin-top:5px;
+ margin-bottom:5px;
+ height:40px;
+ width:100%;
+ background-color: #962140;
+}
+
+.navbar {
+    background-color: transparent;
+    background: transparent;
+    border: none;
+  }
+
