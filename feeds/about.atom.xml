@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>toronjil morado</title><link href="http://gsvaldes.github.io/" rel="alternate"></link><link href="http://gsvaldes.github.io/feeds/about.atom.xml" rel="self"></link><id>http://gsvaldes.github.io/</id><updated>2016-10-31T07:32:00-04:00</updated><entry><title>Welcome</title><link href="http://gsvaldes.github.io/first-post.html" rel="alternate"></link><published>2016-10-31T07:32:00-04:00</published><updated>2016-10-31T07:32:00-04:00</updated><author><name>Geoffrey Valdes</name></author><id>tag:gsvaldes.github.io,2016-10-31:first-post.html</id><summary type="html">&lt;p&gt;Welcome to my blog.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;hello_geoff&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;hi geoff&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</summary><category term="random"></category></entry></feed>
