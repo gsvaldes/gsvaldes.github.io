@@ -8,9 +8,16 @@ h1 {
 
 h1 {
   line-height: 130%;
-  font-size: 8em;
-} 
+  font-size: 8em;  /*8em*/
+/*  text-align: center;*/
+}
 
+@media screen and (max-width: 768px) {
+    h1{
+        font-size: 500%;
+/*        text-align: center;*/
+    }
+}
 .top-divider{
  margin-top:5px;
  margin-bottom:5px;

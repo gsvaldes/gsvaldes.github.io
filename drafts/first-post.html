@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <title>toronjil morado</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+         <!-- Styles -->
+        <link href="/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/theme/css/custom-bs3.css" rel="stylesheet">
+        <link href="/theme/css/custom-font.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link href="/theme/css/theme.css" rel="stylesheet">
+        <link href="/theme/css/tango.css" rel="stylesheet">
+
+
+
+    <meta name="tags" content="random" />
+
+</head>
+
+<body id="index" class="home">
+  <div class="container">
+        <div id="banner"  class="header">
+                <h1><a href="/">toronjil morado <strong></strong></a></h1>
+        </div><!-- /#banner -->
+
+        <div class="top-divider">
+        </div>
+        <nav id="menu" class="navbar navbar-default"><ul class="nav navbar-nav text-uppercase">
+            <li><a href="/pages/about.html">About</a></li>
+        
+        </ul></nav><!-- /#menu -->
+
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="/drafts/first-post.html" rel="bookmark"
+         title="Permalink to Mapping New Haven Neighborhoods">Mapping New Haven Neighborhoods</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2016-10-31T07:32:00-04:00">
+      Mon 31 October 2016
+    </abbr>
+    <address class="vcard author">
+      By           <a class="url fn" href="/author/geoffrey-valdes.html">Geoffrey Valdes</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>I moved to New Haven a few months ago.  As part of getting to know the city, I want to know the different neighborhoods and represent them on a web-based map.  To do that I'd like to have the neighborhood boundaries represented as GeoJson.</p>
+<p>The City of Austin, TX provides most of it's GIS shp files free online.  The City of New Haven does not appear to do the same.  It does, however have a map that shows the census tracts that correspond to each neighborhood</p>
+<p><a class="reference external" href="http://www.cityofnewhaven.com/Library/maps/neighborhoods.gif">http://www.cityofnewhaven.com/Library/maps/neighborhoods.gif</a></p>
+<p>As noted in the above link, &quot;Neighborhood boundaries are approximate and adjusted to coincide with the Census tracts.  There are no official neighborhood boundaries.&quot;</p>
+<p>With the above information, I can now download the shp files of the Census tracts for the State of Connecticut, map a subset of them to the corresponding New Haven neighborhoods, and then convert that to a GeoJson file</p>
+<p>The University of Connnecticut provides GIS data for the state
+<a class="reference external" href="http://magic.lib.uconn.edu/connecticut_data.html">http://magic.lib.uconn.edu/connecticut_data.html</a></p>
+<p>Spefically, from the Census - 2010 Boundary Files section I downloaded the Shapefiles for Connecticut Tracts and then opened this in qQIS.</p>
+<p>In the qGIS layers panel, it displays as
+tractct_37800__0000_2010_s100_census_shp_wgs85wgs</p>
+<p>Opening up the attribute table for this layer, I could see that the NAME10 column contained the census tract number that corresponds to the tract numbers listed in the neighborhood map above.</p>
+<p>Make a csv file with two columns</p>
+<p>Neighborhood | NAME10
+Amity         | 1412
+West Rock     | 1413
+Wooster Square| 1421
+Wooster Square | 1422</p>
+<p>Welcome to my blog.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hello_geoff</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s1">&#39;hi geoff&#39;</span>
+</pre></div>
+
+  </div><!-- /.entry-content -->
+</section>
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Powered by <a href="http://getpelican.com/">Pelican</a>,
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+        <div class="bottom-divider">
+        </div>
+  </div>        <!--container -->
+</body>
+</html>
