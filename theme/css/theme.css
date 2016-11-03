@@ -8,16 +8,19 @@ h1 {
 
 h1 {
   line-height: 130%;
-  font-size: 8em;  /*8em*/
-/*  text-align: center;*/
+  font-size: 8em;
 }
 
 @media screen and (max-width: 768px) {
     h1{
         font-size: 500%;
-/*        text-align: center;*/
     }
 }
+
+a {
+    word-wrap: break-word;
+}
+
 .top-divider{
  margin-top:5px;
  margin-bottom:5px;
