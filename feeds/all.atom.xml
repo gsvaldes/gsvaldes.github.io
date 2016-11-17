@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>toronjil morado</title><link href="http://gsvaldes.github.io/" rel="alternate"></link><link href="http://gsvaldes.github.io/feeds/all.atom.xml" rel="self"></link><id>http://gsvaldes.github.io/</id><updated>2016-10-31T07:32:00-04:00</updated><entry><title>Welcome</title><link href="http://gsvaldes.github.io/first-post.html" rel="alternate"></link><published>2016-10-31T07:32:00-04:00</published><updated>2016-10-31T07:32:00-04:00</updated><author><name>Geoffrey Valdes</name></author><id>tag:gsvaldes.github.io,2016-10-31:first-post.html</id><summary type="html">&lt;p&gt;Welcome to my blog.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;hello_geoff&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;hi geoff&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-</summary><category term="random"></category></entry></feed>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>toronjil morado</title><link href="http://gsvaldes.github.io/" rel="alternate"></link><link href="http://gsvaldes.github.io/feeds/all.atom.xml" rel="self"></link><id>http://gsvaldes.github.io/</id><updated>2016-11-14T07:32:00-05:00</updated><entry><title>Mapping New Haven Neighborhoods</title><link href="http://gsvaldes.github.io/new-haven-neighborhoods.html" rel="alternate"></link><published>2016-11-14T07:32:00-05:00</published><updated>2016-11-14T07:32:00-05:00</updated><author><name>Geoffrey Valdes</name></author><id>tag:gsvaldes.github.io,2016-11-14:new-haven-neighborhoods.html</id><summary type="html">&lt;p&gt;I moved to New Haven a few months ago.  As part of getting to know the city, I want to know the different neighborhoods and represent them on a web-based map.  To do that I'd like to have the neighborhood boundaries represented as GeoJson.&lt;/p&gt;
+&lt;p&gt;The City of Austin, TX provides most of it's GIS shp files free online.  The City of New Haven does not appear to do the same.  It does, however have a map that shows the census tracts that correspond to each neighborhood&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://www.cityofnewhaven.com/Library/maps/neighborhoods.gif"&gt;http://www.cityofnewhaven.com/Library/maps/neighborhoods.gif&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;As noted in the above link, &amp;quot;Neighborhood boundaries are approximate and adjusted to coincide with the Census tracts.  There are no official neighborhood boundaries.&amp;quot;&lt;/p&gt;
+&lt;p&gt;With the above information, I can now download the shp files of the Census tracts for the State of Connecticut, map a subset of them to the corresponding New Haven neighborhoods, and then convert that to a GeoJson file&lt;/p&gt;
+&lt;p&gt;The University of Connnecticut provides GIS data for the state
+&lt;a class="reference external" href="http://magic.lib.uconn.edu/connecticut_data.html"&gt;http://magic.lib.uconn.edu/connecticut_data.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Spefically, from the Census - 2010 Boundary Files section I downloaded the Shapefiles for Connecticut Tracts and then opened this in qQIS.&lt;/p&gt;
+&lt;p&gt;In the qGIS layers panel, it displays as
+tractct_37800__0000_2010_s100_census_shp_wgs85wgs&lt;/p&gt;
+&lt;p&gt;Opening up the attribute table for this layer, I could see that the NAME10 column contained the census tract number that corresponds to the tract numbers listed in the neighborhood map above.&lt;/p&gt;
+&lt;p&gt;Make a csv file with two columns&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="64%" /&gt;
+&lt;col width="36%" /&gt;
+&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;Nbrs&lt;/td&gt;
+&lt;td&gt;NAME10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Amity&lt;/td&gt;
+&lt;td&gt;1412&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;West Rock&lt;/td&gt;
+&lt;td&gt;1413&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Wooster Square&lt;/td&gt;
+&lt;td&gt;1421&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Wooster Square&lt;/td&gt;
+&lt;td&gt;1422&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;...&lt;/td&gt;
+&lt;td&gt;...&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class="note"&gt;
+&lt;p class="first admonition-title"&gt;Note&lt;/p&gt;
+&lt;p class="last"&gt;The rest of the steps to come soon
+But see the map below.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="mapid"&gt;&lt;/div&gt;</summary><category term="random"></category></entry><entry><title>Hacer un mapa de los barrios de New Haven</title><link href="http://gsvaldes.github.io/es/new-haven-neighborhoods.html" rel="alternate"></link><published>2016-10-31T07:32:00-04:00</published><updated>2016-10-31T07:32:00-04:00</updated><author><name>Geoffrey Valdes</name></author><id>tag:gsvaldes.github.io,2016-10-31:es/new-haven-neighborhoods.html</id><summary type="html">&lt;div class="note"&gt;
+&lt;p class="first admonition-title"&gt;Note&lt;/p&gt;
+&lt;p class="last"&gt;Ya mero viene la traducción.
+Pero en la mientras ve el mapa abajo.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="mapid"&gt;&lt;/div&gt;</summary><category term="random"></category></entry></feed>

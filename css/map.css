@@ -1,0 +1,12 @@
+#mapid { 
+    height: 700px;
+     }
+
+/* css to customize Leaflet default styles  */
+.custom .leaflet-popup-tip,
+.custom .leaflet-popup-content-wrapper {
+    font-family: 'Raleway', sans-serif;
+/*    background: #e93434;*/
+    color: #204a87;
+    font-weight: bold
+}     

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <title>toronjil morado</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+         <!-- Styles -->
+        <link href="http://gsvaldes.github.io/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="http://gsvaldes.github.io/theme/css/custom-bs3.css" rel="stylesheet">
+        <link href="http://gsvaldes.github.io/theme/css/custom-font.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link href="http://gsvaldes.github.io/theme/css/theme.css" rel="stylesheet">
+        <link href="http://gsvaldes.github.io/theme/css/tango.css" rel="stylesheet">
+              <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" type="text/css" />
+              <link rel="stylesheet" href="http://gsvaldes.github.io/css/map.css" type="text/css" />
+
+
+
+    <meta name="tags" content="random" />
+
+        <link href="http://gsvaldes.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="toronjil morado Full Atom Feed" />
+        <link href="http://gsvaldes.github.io/feeds/about.atom.xml" type="application/atom+xml" rel="alternate" title="toronjil morado Categories Atom Feed" />
+
+</head>
+
+<body id="index" class="home">
+  <div class="container">
+        <div id="banner"  class="header">
+                <h1><a href="http://gsvaldes.github.io/">toronjil morado <strong></strong></a></h1>
+        </div><!-- /#banner -->
+
+        <div class="top-divider">
+        </div>
+        <nav id="menu" class="navbar navbar-default"><ul class="nav navbar-nav text-uppercase">
+
+        <li class="active"><a href="http://gsvaldes.github.io/">English</a></li>
+        <li><a href="/es/">Español</a></li>
+        <!-- separator -->
+        <li style="background-color: white; padding: 5px;">&nbsp</li>
+
+    
+            <li><a href="http://gsvaldes.github.io/pages/about.html">About</a></li>
+        
+        </ul></nav><!-- /#menu -->
+
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="http://gsvaldes.github.io/new-haven-neighborhoods.html" rel="bookmark"
+         title="Permalink to Mapping New Haven Neighborhoods">Mapping New Haven Neighborhoods</a></h2>
+ Translations: 
+<a href="http://gsvaldes.github.io/es/new-haven-neighborhoods.html">es</a>
+
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2016-11-14T07:32:00-05:00">
+      Mon 14 November 2016
+    </abbr>
+    <address class="vcard author">
+      By           <a class="url fn" href="http://gsvaldes.github.io/author/geoffrey-valdes.html">Geoffrey Valdes</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>I moved to New Haven a few months ago.  As part of getting to know the city, I want to know the different neighborhoods and represent them on a web-based map.  To do that I'd like to have the neighborhood boundaries represented as GeoJson.</p>
+<p>The City of Austin, TX provides most of it's GIS shp files free online.  The City of New Haven does not appear to do the same.  It does, however have a map that shows the census tracts that correspond to each neighborhood</p>
+<p><a class="reference external" href="http://www.cityofnewhaven.com/Library/maps/neighborhoods.gif">http://www.cityofnewhaven.com/Library/maps/neighborhoods.gif</a></p>
+<p>As noted in the above link, &quot;Neighborhood boundaries are approximate and adjusted to coincide with the Census tracts.  There are no official neighborhood boundaries.&quot;</p>
+<p>With the above information, I can now download the shp files of the Census tracts for the State of Connecticut, map a subset of them to the corresponding New Haven neighborhoods, and then convert that to a GeoJson file</p>
+<p>The University of Connnecticut provides GIS data for the state
+<a class="reference external" href="http://magic.lib.uconn.edu/connecticut_data.html">http://magic.lib.uconn.edu/connecticut_data.html</a></p>
+<p>Spefically, from the Census - 2010 Boundary Files section I downloaded the Shapefiles for Connecticut Tracts and then opened this in qQIS.</p>
+<p>In the qGIS layers panel, it displays as
+tractct_37800__0000_2010_s100_census_shp_wgs85wgs</p>
+<p>Opening up the attribute table for this layer, I could see that the NAME10 column contained the census tract number that corresponds to the tract numbers listed in the neighborhood map above.</p>
+<p>Make a csv file with two columns</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="64%" />
+<col width="36%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>Nbrs</td>
+<td>NAME10</td>
+</tr>
+<tr><td>Amity</td>
+<td>1412</td>
+</tr>
+<tr><td>West Rock</td>
+<td>1413</td>
+</tr>
+<tr><td>Wooster Square</td>
+<td>1421</td>
+</tr>
+<tr><td>Wooster Square</td>
+<td>1422</td>
+</tr>
+<tr><td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<p class="last">The rest of the steps to come soon
+But see the map below.</p>
+</div>
+<div id="mapid"></div>
+  </div><!-- /.entry-content -->
+</section>
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Powered by <a href="http://getpelican.com/">Pelican</a>,
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+        <div class="bottom-divider">
+        </div>
+  </div>        <!--container -->
+<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+<script src="http://gsvaldes.github.io/js/nh_map.js"></script>
+</body>
+
+</html>
