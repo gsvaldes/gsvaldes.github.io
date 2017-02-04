@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>toronjil morado</title><link href="http://gsvaldes.github.io/" rel="alternate"></link><link href="http://gsvaldes.github.io/feeds/all.atom.xml" rel="self"></link><id>http://gsvaldes.github.io/</id><updated>2016-11-14T07:32:00-05:00</updated><entry><title>Mapping New Haven Neighborhoods</title><link href="http://gsvaldes.github.io/articles/new-haven-neighborhoods" rel="alternate"></link><published>2016-11-14T07:32:00-05:00</published><updated>2016-11-14T07:32:00-05:00</updated><author><name>Geoffrey Valdes</name></author><id>tag:gsvaldes.github.io,2016-11-14:articles/new-haven-neighborhoods</id><summary type="html">&lt;p&gt;I moved to New Haven a few months ago.  As part of getting to know the city, I want to know the different neighborhoods and represent them on a web-based map.  To do that I'd like to have the neighborhood boundaries represented as GeoJson.&lt;/p&gt;
-&lt;p&gt;The City of Austin, TX provides most of it's GIS shp files free online.  The City of New Haven does not appear to do the same.  It does, however have a map that shows the census tracts that correspond to each neighborhood&lt;/p&gt;
-&lt;p&gt;&lt;a class="reference external" href="http://www.cityofnewhaven.com/Library/maps/neighborhoods.gif"&gt;http://www.cityofnewhaven.com/Library/maps/neighborhoods.gif&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;As noted in the above link, &amp;quot;Neighborhood boundaries are approximate and adjusted to coincide with the Census tracts.  There are no official neighborhood boundaries.&amp;quot;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>toronjil morado</title><link href="http://gsvaldes.github.io/" rel="alternate"></link><link href="http://gsvaldes.github.io/feeds/all.atom.xml" rel="self"></link><id>http://gsvaldes.github.io/</id><updated>2016-12-17T12:30:00-05:00</updated><entry><title>Mapping New Haven Neighborhoods</title><link href="http://gsvaldes.github.io/articles/new-haven-neighborhoods" rel="alternate"></link><published>2016-12-17T12:30:00-05:00</published><updated>2016-12-17T12:30:00-05:00</updated><author><name>Geoffrey Valdes</name></author><id>tag:gsvaldes.github.io,2016-11-14:articles/new-haven-neighborhoods</id><summary type="html">&lt;p&gt;I moved to New Haven a few months ago.  As part of getting to know the city, I want to know the different neighborhoods and show them on a web-based map using Leaflet.  To do that I need to have the description of the neighborhood boundaries in the GeoJson format.&lt;/p&gt;
+&lt;p&gt;For New Haven, this data is probably already available from &lt;a class="reference external" href="http://www.ctdatahaven.org/"&gt;Data Haven&lt;/a&gt; in a cleaned format, but I want to show the steps to do this for other locations.&lt;/p&gt;
+&lt;p&gt;Broadly, the steps are&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Find out how the neighborhoods are defined.&lt;/li&gt;
+&lt;li&gt;Get a geospatial dataset that corresponds to the neighborhood definition.&lt;/li&gt;
+&lt;li&gt;Convert the geospatial data to GeoJSON.&lt;/li&gt;
+&lt;li&gt;Draw the neigborhood boundaries on a web map using the GeoJSON and the Leaflet JavaScript Library.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The City of Austin, TX provides most of it's GIS shp files free online.  The City of New Haven does not appear to do the same.  It does, however have a city plan that shows the census tracts that correspond to each neighborhood:&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://www.cityofnewhaven.com/cityplan/pdfs/PlanningPrograms/Demographics.pdf"&gt;http://www.cityofnewhaven.com/cityplan/pdfs/PlanningPrograms/Demographics.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;As noted on another City of New Haven page, &amp;quot;Neighborhood boundaries are approximate and adjusted to coincide with the Census tracts.  There are no official neighborhood boundaries.&amp;quot;&lt;/p&gt;
 &lt;p&gt;With the above information, I can now download the shp files of the Census tracts for the State of Connecticut, map a subset of them to the corresponding New Haven neighborhoods, and then convert that to a GeoJson file&lt;/p&gt;
 &lt;p&gt;The University of Connnecticut provides GIS data for the state
 &lt;a class="reference external" href="http://magic.lib.uconn.edu/connecticut_data.html"&gt;http://magic.lib.uconn.edu/connecticut_data.html&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Spefically, from the Census - 2010 Boundary Files section I downloaded the Shapefiles for Connecticut Tracts and then opened this in qQIS.&lt;/p&gt;
+&lt;p&gt;Spefically, from the Census - 2010 Boundary Files section you can download the Shapefiles for Connecticut Tracts and open this in qGIS.&lt;/p&gt;
 &lt;p&gt;In the qGIS layers panel, it displays as
-tractct_37800__0000_2010_s100_census_shp_wgs85wgs&lt;/p&gt;
-&lt;p&gt;Opening up the attribute table for this layer, I could see that the NAME10 column contained the census tract number that corresponds to the tract numbers listed in the neighborhood map above.&lt;/p&gt;
+&lt;tt class="docutils literal"&gt;tractct_37800__0000_2010_s100_census_shp_wgs85wgs&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;Opening up the attribute table for this layer, you could see that the NAME10 column contained the census tract number that corresponds to the tract numbers listed in the neighborhood map above.&lt;/p&gt;
+&lt;p&gt;From here I made a csv file with two columns&lt;/p&gt;
 &lt;p&gt;Make a csv file with two columns&lt;/p&gt;
 &lt;table border="1" class="docutils"&gt;
 &lt;colgroup&gt;
@@ -35,6 +44,9 @@ tractct_37800__0000_2010_s100_census_shp_wgs85wgs&lt;/p&gt;
 &lt;tr&gt;&lt;td&gt;...&lt;/td&gt;
 &lt;td&gt;...&lt;/td&gt;
 &lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;...&lt;/td&gt;
+&lt;td&gt;...&lt;/td&gt;
+&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;div class="note"&gt;
@@ -42,9 +54,59 @@ tractct_37800__0000_2010_s100_census_shp_wgs85wgs&lt;/p&gt;
 &lt;p class="last"&gt;The rest of the steps to come soon
 But see the map below.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="mapid"&gt;&lt;/div&gt;</summary><category term="random"></category></entry><entry><title>Hacer un mapa de los barrios de New Haven</title><link href="http://gsvaldes.github.io/es/articles/new-haven-neighborhoods" rel="alternate"></link><published>2016-10-31T07:32:00-04:00</published><updated>2016-10-31T07:32:00-04:00</updated><author><name>Geoffrey Valdes</name></author><id>tag:gsvaldes.github.io,2016-10-31:es/articles/new-haven-neighborhoods</id><summary type="html">&lt;div class="note"&gt;
+&lt;div id="mapid"&gt;&lt;/div&gt;</summary><category term="random"></category></entry><entry><title>Hacer un mapa de los barrios de New Haven</title><link href="http://gsvaldes.github.io/es/articles/new-haven-neighborhoods" rel="alternate"></link><published>2016-12-17T12:30:00-05:00</published><updated>2016-12-17T12:30:00-05:00</updated><author><name>Geoffrey Valdes</name></author><id>tag:gsvaldes.github.io,2016-10-31:es/articles/new-haven-neighborhoods</id><summary type="html">&lt;p&gt;Me mudé a New Haven hace unos meses.  Como parte de conocer la ciudad, quiero saber cuáles son los distintos barrios y mostrarlos en un mapa web usando Leaflet.  Para hacer eso, necesito tener la descripción los límites de los barrios en el formato GeoJSON.&lt;/p&gt;
+&lt;p&gt;Para New Haven, es probable que &lt;a class="reference external" href="http://www.ctdatahaven.org/"&gt;Data Haven&lt;/a&gt;  ya tiene estos datos en un formato limpiado, pero quiero mostrar los pasos para hacer eso en otros lugares.&lt;/p&gt;
+&lt;p&gt;En términos generales, los pasos son&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Descubrir como se define los barrios&lt;/li&gt;
+&lt;li&gt;Conseguir un conjunto de datos geoespaciales que corresponde a la definición de los barrios&lt;/li&gt;
+&lt;li&gt;Convertor el conjunto de datos geoepaciales al formato GeoJSON&lt;/li&gt;
+&lt;li&gt;Dibujar los barrios en un mapa web usando el GeoJSON y Leaflet, una biblioteca de&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;La ciudad de Austin, TX proporciona la gran parte de sus datos SIG, incluyendo los del formato shapefile, en línea y gratis.  No parece que la ciduad de New Haven hace lo mismo.  Pero si tiene un plan de la ciudad que muestra las secciones censales que corresponde a cada barrio:&lt;/p&gt;
+&lt;p&gt;&lt;a class="reference external" href="http://www.cityofnewhaven.com/cityplan/pdfs/PlanningPrograms/Demographics.pdf"&gt;http://www.cityofnewhaven.com/cityplan/pdfs/PlanningPrograms/Demographics.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Como se nota en otra página de la ciudad, &amp;quot;Los límites de los vecindarios son aproximados y ajustados para coincidir con las secciones censales.  No hay límites oficiales de los vecindarios&amp;quot;&lt;/p&gt;
+&lt;p&gt;Con la información anterior, ahora puedo descargar los shapefiles de las secciones censales para el Estado de Connecticut, mapear un subconjunto de ellos a los vecindarios correspondientes de New Haven, y luego convertirlo en un archivo GeoJson.&lt;/p&gt;
+&lt;p&gt;La Universidad de Connnecticut proporciona datos SIG para el estado
+&lt;a class="reference external" href="http://magic.lib.uconn.edu/connecticut_data.html"&gt;http://magic.lib.uconn.edu/connecticut_data.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Especificamente, de la sección 'Census - 2010 Boundary Files' se puede descargar los shapefiles de Connecticut Tracts y abrirlos en qGIS.&lt;/p&gt;
+&lt;p&gt;En el panel de capas(Layers), se muestra como
+&lt;tt class="docutils literal"&gt;tractct_37800__0000_2010_s100_census_shp_wgs85wgs&lt;/tt&gt;&lt;/p&gt;
+&lt;p&gt;Abriendo la tabla de atributos para esta capa, se ve que la columna NAME10 contiene el número de sección censal que corresponde a los
+números de seccion enumerados en el mapa vecindal anterior.&lt;/p&gt;
+&lt;p&gt;A partir de aquí hice un archivo csv con dos columnas&lt;/p&gt;
+&lt;table border="1" class="docutils"&gt;
+&lt;colgroup&gt;
+&lt;col width="64%" /&gt;
+&lt;col width="36%" /&gt;
+&lt;/colgroup&gt;
+&lt;tbody valign="top"&gt;
+&lt;tr&gt;&lt;td&gt;Nbrs&lt;/td&gt;
+&lt;td&gt;NAME10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Amity&lt;/td&gt;
+&lt;td&gt;1412&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;West Rock&lt;/td&gt;
+&lt;td&gt;1413&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Wooster Square&lt;/td&gt;
+&lt;td&gt;1421&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Wooster Square&lt;/td&gt;
+&lt;td&gt;1422&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;...&lt;/td&gt;
+&lt;td&gt;...&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;...&lt;/td&gt;
+&lt;td&gt;...&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class="note"&gt;
 &lt;p class="first admonition-title"&gt;Note&lt;/p&gt;
-&lt;p class="last"&gt;Ya mero viene la traducción.
+&lt;p class="last"&gt;Vienen pronto los pasos restantes.
 Pero en la mientras ve el mapa abajo.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id="mapid"&gt;&lt;/div&gt;</summary><category term="random"></category></entry></feed>

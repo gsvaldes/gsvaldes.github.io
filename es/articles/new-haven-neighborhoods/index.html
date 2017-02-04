@@ -67,14 +67,67 @@
     <abbr class="published" title="2016-10-31T07:32:00-04:00">
       Mon 31 October 2016
     </abbr>
+    <abbr class="modified" title="2016-12-17T12:30:00-05:00">
+      <br> Updated Sat 17 December 2016
+    </abbr>
     <address class="vcard author">
       By           <a class="url fn" href="/es/author/geoffrey-valdes">Geoffrey Valdes</a>
     </address>
   </footer><!-- /.post-info -->
   <div class="entry-content">
-    <div class="note">
+    <p>Me mudé a New Haven hace unos meses.  Como parte de conocer la ciudad, quiero saber cuáles son los distintos barrios y mostrarlos en un mapa web usando Leaflet.  Para hacer eso, necesito tener la descripción los límites de los barrios en el formato GeoJSON.</p>
+<p>Para New Haven, es probable que <a class="reference external" href="http://www.ctdatahaven.org/">Data Haven</a>  ya tiene estos datos en un formato limpiado, pero quiero mostrar los pasos para hacer eso en otros lugares.</p>
+<p>En términos generales, los pasos son</p>
+<ul class="simple">
+<li>Descubrir como se define los barrios</li>
+<li>Conseguir un conjunto de datos geoespaciales que corresponde a la definición de los barrios</li>
+<li>Convertor el conjunto de datos geoepaciales al formato GeoJSON</li>
+<li>Dibujar los barrios en un mapa web usando el GeoJSON y Leaflet, una biblioteca de</li>
+</ul>
+<p>La ciudad de Austin, TX proporciona la gran parte de sus datos SIG, incluyendo los del formato shapefile, en línea y gratis.  No parece que la ciduad de New Haven hace lo mismo.  Pero si tiene un plan de la ciudad que muestra las secciones censales que corresponde a cada barrio:</p>
+<p><a class="reference external" href="http://www.cityofnewhaven.com/cityplan/pdfs/PlanningPrograms/Demographics.pdf">http://www.cityofnewhaven.com/cityplan/pdfs/PlanningPrograms/Demographics.pdf</a></p>
+<p>Como se nota en otra página de la ciudad, &quot;Los límites de los vecindarios son aproximados y ajustados para coincidir con las secciones censales.  No hay límites oficiales de los vecindarios&quot;</p>
+<p>Con la información anterior, ahora puedo descargar los shapefiles de las secciones censales para el Estado de Connecticut, mapear un subconjunto de ellos a los vecindarios correspondientes de New Haven, y luego convertirlo en un archivo GeoJson.</p>
+<p>La Universidad de Connnecticut proporciona datos SIG para el estado
+<a class="reference external" href="http://magic.lib.uconn.edu/connecticut_data.html">http://magic.lib.uconn.edu/connecticut_data.html</a></p>
+<p>Especificamente, de la sección 'Census - 2010 Boundary Files' se puede descargar los shapefiles de Connecticut Tracts y abrirlos en qGIS.</p>
+<p>En el panel de capas(Layers), se muestra como
+<tt class="docutils literal">tractct_37800__0000_2010_s100_census_shp_wgs85wgs</tt></p>
+<p>Abriendo la tabla de atributos para esta capa, se ve que la columna NAME10 contiene el número de sección censal que corresponde a los
+números de seccion enumerados en el mapa vecindal anterior.</p>
+<p>A partir de aquí hice un archivo csv con dos columnas</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="64%" />
+<col width="36%" />
+</colgroup>
+<tbody valign="top">
+<tr><td>Nbrs</td>
+<td>NAME10</td>
+</tr>
+<tr><td>Amity</td>
+<td>1412</td>
+</tr>
+<tr><td>West Rock</td>
+<td>1413</td>
+</tr>
+<tr><td>Wooster Square</td>
+<td>1421</td>
+</tr>
+<tr><td>Wooster Square</td>
+<td>1422</td>
+</tr>
+<tr><td>...</td>
+<td>...</td>
+</tr>
+<tr><td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<div class="note">
 <p class="first admonition-title">Note</p>
-<p class="last">Ya mero viene la traducción.
+<p class="last">Vienen pronto los pasos restantes.
 Pero en la mientras ve el mapa abajo.</p>
 </div>
 <div id="mapid"></div>

@@ -67,22 +67,34 @@
     <abbr class="published" title="2016-11-14T07:32:00-05:00">
       Mon 14 November 2016
     </abbr>
+    <abbr class="modified" title="2016-12-17T12:30:00-05:00">
+      <br> Updated Sat 17 December 2016
+    </abbr>
     <address class="vcard author">
       By           <a class="url fn" href="http://gsvaldes.github.io/author/geoffrey-valdes">Geoffrey Valdes</a>
     </address>
   </footer><!-- /.post-info -->
   <div class="entry-content">
-    <p>I moved to New Haven a few months ago.  As part of getting to know the city, I want to know the different neighborhoods and represent them on a web-based map.  To do that I'd like to have the neighborhood boundaries represented as GeoJson.</p>
-<p>The City of Austin, TX provides most of it's GIS shp files free online.  The City of New Haven does not appear to do the same.  It does, however have a map that shows the census tracts that correspond to each neighborhood</p>
-<p><a class="reference external" href="http://www.cityofnewhaven.com/Library/maps/neighborhoods.gif">http://www.cityofnewhaven.com/Library/maps/neighborhoods.gif</a></p>
-<p>As noted in the above link, &quot;Neighborhood boundaries are approximate and adjusted to coincide with the Census tracts.  There are no official neighborhood boundaries.&quot;</p>
+    <p>I moved to New Haven a few months ago.  As part of getting to know the city, I want to know the different neighborhoods and show them on a web-based map using Leaflet.  To do that I need to have the description of the neighborhood boundaries in the GeoJson format.</p>
+<p>For New Haven, this data is probably already available from <a class="reference external" href="http://www.ctdatahaven.org/">Data Haven</a> in a cleaned format, but I want to show the steps to do this for other locations.</p>
+<p>Broadly, the steps are</p>
+<ul class="simple">
+<li>Find out how the neighborhoods are defined.</li>
+<li>Get a geospatial dataset that corresponds to the neighborhood definition.</li>
+<li>Convert the geospatial data to GeoJSON.</li>
+<li>Draw the neigborhood boundaries on a web map using the GeoJSON and the Leaflet JavaScript Library.</li>
+</ul>
+<p>The City of Austin, TX provides most of it's GIS shp files free online.  The City of New Haven does not appear to do the same.  It does, however have a city plan that shows the census tracts that correspond to each neighborhood:</p>
+<p><a class="reference external" href="http://www.cityofnewhaven.com/cityplan/pdfs/PlanningPrograms/Demographics.pdf">http://www.cityofnewhaven.com/cityplan/pdfs/PlanningPrograms/Demographics.pdf</a></p>
+<p>As noted on another City of New Haven page, &quot;Neighborhood boundaries are approximate and adjusted to coincide with the Census tracts.  There are no official neighborhood boundaries.&quot;</p>
 <p>With the above information, I can now download the shp files of the Census tracts for the State of Connecticut, map a subset of them to the corresponding New Haven neighborhoods, and then convert that to a GeoJson file</p>
 <p>The University of Connnecticut provides GIS data for the state
 <a class="reference external" href="http://magic.lib.uconn.edu/connecticut_data.html">http://magic.lib.uconn.edu/connecticut_data.html</a></p>
-<p>Spefically, from the Census - 2010 Boundary Files section I downloaded the Shapefiles for Connecticut Tracts and then opened this in qQIS.</p>
+<p>Spefically, from the Census - 2010 Boundary Files section you can download the Shapefiles for Connecticut Tracts and open this in qGIS.</p>
 <p>In the qGIS layers panel, it displays as
-tractct_37800__0000_2010_s100_census_shp_wgs85wgs</p>
-<p>Opening up the attribute table for this layer, I could see that the NAME10 column contained the census tract number that corresponds to the tract numbers listed in the neighborhood map above.</p>
+<tt class="docutils literal">tractct_37800__0000_2010_s100_census_shp_wgs85wgs</tt></p>
+<p>Opening up the attribute table for this layer, you could see that the NAME10 column contained the census tract number that corresponds to the tract numbers listed in the neighborhood map above.</p>
+<p>From here I made a csv file with two columns</p>
 <p>Make a csv file with two columns</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -104,6 +116,9 @@ tractct_37800__0000_2010_s100_census_shp_wgs85wgs</p>
 </tr>
 <tr><td>Wooster Square</td>
 <td>1422</td>
+</tr>
+<tr><td>...</td>
+<td>...</td>
 </tr>
 <tr><td>...</td>
 <td>...</td>
