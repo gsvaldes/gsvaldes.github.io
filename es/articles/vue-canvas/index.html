@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+          <title>toronjil morado</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+         <!-- Styles -->
+        <link href="/es/theme/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/es/theme/css/custom-bs3.css" rel="stylesheet">
+        <link href="/es/theme/css/custom-font.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link href="/es/theme/css/theme.css" rel="stylesheet">
+        <link href="/es/theme/css/tango.css" rel="stylesheet">
+
+
+
+    <meta name="tags" content="random" />
+
+        <link href="http://gsvaldes.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="toronjil morado Full Atom Feed" />
+        <link href="http://gsvaldes.github.io/feeds/vuejs.atom.xml" type="application/atom+xml" rel="alternate" title="toronjil morado Categories Atom Feed" />
+        <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-89053543-1");
+              pageTracker._trackPageview();
+            } catch(err) {}
+        </script>
+
+</head>
+
+<body id="index" class="home">
+  <div class="container">
+        <div id="banner"  class="header">
+                <h1><a href="/es/">toronjil morado <strong></strong></a></h1>
+        </div><!-- /#banner -->
+
+        <div class="top-divider">
+        </div>
+        <nav id="menu" class="navbar navbar-default"><ul class="nav navbar-nav text-uppercase">
+
+        <li><a href="http://gsvaldes.github.io/">English</a></li>
+        <li class="active"><a href="/es/">Español</a></li>
+        <!-- separator -->
+        <li style="background-color: white; padding: 5px;">&nbsp</li>
+
+    
+            <li><a href="/es/pages/about">Acerca de mi</a></li>
+        
+        </ul></nav><!-- /#menu -->
+
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="/es/articles/vue-canvas" rel="bookmark"
+         title="Permalink to Usando VueJS con Canvas">Usando VueJS con Canvas</a></h2>
+ Translations: 
+<a href="/es/../articles/vue-canvas">en</a>
+
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="2017-06-26T06:05:00-04:00">
+      Mon 26 June 2017
+    </abbr>
+    <abbr class="modified" title="2017-06-26T06:05:00-04:00">
+      <br> Updated Mon 26 June 2017
+    </abbr>
+    <address class="vcard author">
+      By           <a class="url fn" href="/es/author/geoffrey-valdes">Geoffrey Valdes</a>
+    </address>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>Recientemente, he estado disfrutando de la lectura de <a class="reference external" href="http://natureofcode.com/book/">The Nature of Code</a> (La Naturaleza de Código) de Daniel Schiffman.  El libro explica cómo programar animaciones que reflejan los procesos naturales.  Los ejemplos utilizan una biblioteca Java llamada <a class="reference external" href="https://processing.org/">Processing</a>.   Existe una adaptación de Processing a JavaScript, <a class="reference external" href="http://processingjs.org/">Processing.js</a>, sin embargo, quería ver si podía recrear algunos de los ejemplos de The Nature of Code desde cero, usando <a class="reference external" href="https://vuejs.org/">VueJS</a> y el elemento HTML <tt class="docutils literal">&lt;canvas&gt;</tt></p>
+<p>Una de las características de Vue que me gusta es que, aunque permite la compilación y organización de código complejo, para empezar, se puede utilizarlo colocando un enlance a la red de distribución de contenidos (CDN) en la cabeza de su archivo <tt class="docutils literal">html</tt> y conectar su instancia Vue a un elemento de html a traves del atributo <tt class="docutils literal">el</tt>.</p>
+<div class="highlight"><pre><span></span>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;es&quot;&gt;
+    &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;título&lt;/title&gt;
+    &lt;script src=&quot;https://unpkg.com/vue&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;vue-canvas.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&#39;app&#39;&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+<p>Y en el archivo vue-canvas.js</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+<span class="p">});</span>
+</pre></div>
+<p>Por supuesto, este código no hace nada todavía.  Hagamos una bola rebotante.</p>
+<p>Primero, agregue un elemento canvas al archivo html dentro de la div controlada por VueJS.</p>
+<div class="highlight"><pre><span></span>&lt;div id=&quot;app&quot;&gt;
+    &lt;canvas id=&quot;canvas&quot;&gt;&lt;/canvas&gt;
+&lt;/div&gt;
+</pre></div>
+<p>Y actualizar vue-canvas.js</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+    <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">ctx</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">mounted</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;canvas&#39;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">ctx</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+<p>Según la <a class="reference external" href="https://vuejs.org/v2/api/#mounted">documentación de VueJS</a>, se llama al método <tt class="docutils literal">mounted</tt> después de que <tt class="docutils literal">el</tt>, que es en nuestro caso el <tt class="docutils literal">div</tt> with <tt class="docutils literal"><span class="pre">id=&quot;app&quot;</span></tt>, ha sido reemplazado por <tt class="docutils literal"><span class="pre">vm.$el</span></tt>  de la instancia de Vue.  No podemos
+asignar <tt class="docutils literal">this.ctx</tt> igual a <tt class="docutils literal"><span class="pre">canvas.getContext('2d')</span></tt> hasta después del montaje, porque hasta entonces el elemento <tt class="docutils literal">canvas</tt> todavía no existe en la página, como la sección de nuestro archivo html dentro de la div <tt class="docutils literal">app</tt> sirve como una plantilla de lo que VueJS generará durante el montaje.  En el método <tt class="docutils literal">mounted</tt>, asignamos la anchura y la altura del elemento <tt class="docutils literal">canvas</tt> a la anchura y altura que creamos en el atributo <tt class="docutils literal">data</tt> para que podamos acceder a ellos más tarde.</p>
+<p>Ahora que podemos controlar el contexto  de canvas, <tt class="docutils literal">ctx</tt>, de vue, vamos a agregar un método para dibujar una bola.</p>
+<p>Agregue un objeto de <tt class="docutils literal">methods</tt> a nuestra instancia VueJS y un método <tt class="docutils literal">dibujarPelota</tt> dentro de ella.</p>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+    <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">ctx</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nx">x</span><span class="o">:</span> <span class="mi">25</span><span class="p">,</span>
+        <span class="nx">y</span><span class="o">:</span> <span class="mi">25</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">dibujarPelota</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+            <span class="kd">var</span> <span class="nx">radius</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">arc</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="nx">radius</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">fill</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="s1">&#39;#003300&#39;</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="nx">mounted</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+      <span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;canvas&#39;</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">ctx</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+<p>Dentro del html, también podemos agregar un botón para llamar al método dibujarPelota</p>
+<div class="highlight"><pre><span></span>&lt;div id=&quot;app&quot;&gt;
+    &lt;canvas id=&quot;canvas&quot;&gt;&lt;/canvas&gt;
+    &lt;div&gt;
+        &lt;button @click=&quot;drawBall&quot;&gt;Draw Ball&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre></div>
+<p>Al hacer clic en el botón Dibujar Pelota  se dibuja una bola centrada 25 px hacia abajo y 25 px a la derecha de la esquina superior izquierda del elemento <tt class="docutils literal">canvas</tt></p>
+<div id='app'>
+  <canvas id="canvas"></canvas>
+  <div>
+    <button @click="drawBall">Dibujar Pelota</button>
+    <button @click="moveBall">Empezar</button>
+    <button @click="stopBall">Detener</button>
+    <button @click="clearCanvas">Borrar</button>
+  </div>
+</div>
+  </div><!-- /.entry-content -->
+</section>
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+Hecho con <a href="http://getpelican.com/">Pelican</a>,
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
+        <div class="bottom-divider">
+        </div>
+  </div>        <!--container -->
+<script src="https://npmcdn.com/vue/dist/vue.js"></script>
+<script src="/es/js/vue-canvas.js"></script>
+</body>
+
+</html>

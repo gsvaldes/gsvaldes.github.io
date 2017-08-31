@@ -76,7 +76,7 @@
   </footer><!-- /.post-info -->
   <div class="entry-content">
     <p>I moved to New Haven a few months ago.  As part of getting to know the city, I want to know the different neighborhoods and show them on a web-based map using Leaflet.  To do that I need to have the description of the neighborhood boundaries in the GeoJson format.</p>
-<p>For New Haven, this data is probably already available from <a class="reference external" href="http://www.ctdatahaven.org/">Data Haven</a> in a cleaned format, but I want to show the steps to do this for other locations.</p>
+<p>For New Haven, this data is probably already available from <a class="reference external" href="http://www.ctdatahaven.org/">Data Haven</a> in a cleaned format, but I want to show the steps to do this for other locations.attributes</p>
 <p>Broadly, the steps are</p>
 <ul class="simple">
 <li>Find out how the neighborhoods are defined.</li>
@@ -90,7 +90,7 @@
 <p>With the above information, I can now download the shp files of the Census tracts for the State of Connecticut, map a subset of them to the corresponding New Haven neighborhoods, and then convert that to a GeoJson file</p>
 <p>The University of Connnecticut provides GIS data for the state
 <a class="reference external" href="http://magic.lib.uconn.edu/connecticut_data.html">http://magic.lib.uconn.edu/connecticut_data.html</a></p>
-<p>Spefically, from the Census - 2010 Boundary Files section you can download the Shapefiles for Connecticut Tracts and open this in qGIS.</p>
+<p>Spefically, from the 'Census - 2010 Boundary Files' section you can download the Shapefiles for Connecticut Tracts and open this in qGIS.</p>
 <p>In the qGIS layers panel, it displays as
 <tt class="docutils literal">tractct_37800__0000_2010_s100_census_shp_wgs85wgs</tt></p>
 <p>Opening up the attribute table for this layer, you could see that the NAME10 column contained the census tract number that corresponds to the tract numbers listed in the neighborhood map above.</p>
